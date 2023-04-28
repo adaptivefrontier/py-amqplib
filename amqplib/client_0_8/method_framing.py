@@ -131,7 +131,7 @@ class MethodReader(object):
         while self.queue.empty():
             try:
                 frame_type, channel, payload = self.source.read_frame()
-            except Exception, e:
+            except Exception as e:
                 #
                 # Connection was closed?  Framing Error?
                 #
