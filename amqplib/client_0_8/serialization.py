@@ -365,11 +365,11 @@ class AMQPWriter(object):
         table_data = AMQPWriter()
         for k, v in d.items():
             table_data.write_shortstr(k)
-            if isinstance(v, basestring):
+            if isinstance(v, str):
                 v = v.encode('utf-8')
                 table_data.write(byte(83)) # 'S'
                 table_data.write_longstr(v)
-            elif isinstance(v, (int, long)):
+            elif isinstance(v, int):
                 table_data.write(byte(73)) # 'I'
                 table_data.write(pack('>i', v))
             elif isinstance(v, Decimal):
@@ -402,7 +402,7 @@ class AMQPWriter(object):
         representing seconds since the Unix epoch.
 
         """
-        self.out.write(pack('>q', long(mktime(v.timetuple()))))
+        self.out.write(pack('>q', int(mktime(v.timetuple()))))
 
 
 class GenericContent(object):
