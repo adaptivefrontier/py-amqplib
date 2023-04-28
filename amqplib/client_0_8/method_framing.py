@@ -49,9 +49,9 @@ except:
                 return result
 
 
-from basic_message import Message
-from exceptions import *
-from serialization import AMQPReader
+from .basic_message import Message
+from .exceptions import *
+from .serialization import AMQPReader
 
 __all__ =  [
             'MethodReader',
@@ -131,7 +131,7 @@ class MethodReader(object):
         while self.queue.empty():
             try:
                 frame_type, channel, payload = self.source.read_frame()
-            except Exception as e:
+            except Exception, e:
                 #
                 # Connection was closed?  Framing Error?
                 #
