@@ -20,7 +20,6 @@ Convert between bytestreams and higher-level AMQP types.
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 
-import string
 import sys
 from datetime import datetime
 from decimal import Decimal
@@ -335,8 +334,7 @@ class AMQPWriter(object):
 
         """
         self._flushbits()
-        if isinstance(s, unicode):
-            s = s.encode('utf-8')
+        s = s.encode('utf-8')
         if len(s) > 255:
             raise ValueError('String too long')
         self.write_octet(len(s))
@@ -351,8 +349,7 @@ class AMQPWriter(object):
 
         """
         self._flushbits()
-        if isinstance(s, unicode):
-            s = s.encode('utf-8')
+        s = s.encode('utf-8')
         self.write_long(len(s))
         self.out.write(s)
 
@@ -369,8 +366,7 @@ class AMQPWriter(object):
         for k, v in d.items():
             table_data.write_shortstr(k)
             if isinstance(v, basestring):
-                if isinstance(v, unicode):
-                    v = v.encode('utf-8')
+                v = v.encode('utf-8')
                 table_data.write(byte(83)) # 'S'
                 table_data.write_longstr(v)
             elif isinstance(v, (int, long)):

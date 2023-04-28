@@ -20,7 +20,6 @@ Test amqplib.client_0_8.channel module
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 
 import sys
-import time
 import unittest
 
 try:
@@ -31,8 +30,7 @@ except NameError:
 
 import settings
 
-
-from amqplib.client_0_8 import AMQPChannelException, AMQPException, Connection, Message
+from amqplib.client_0_8 import AMQPChannelException, Connection, Message
 
 
 class TestChannel(unittest.TestCase):
@@ -120,7 +118,6 @@ class TestChannel(unittest.TestCase):
         self.ch.basic_publish(msg, 'amq.direct', routing_key=my_routing_key)
         msg2 = self.ch.basic_get(qname, no_ack=True)
         self.assertEqual(msg2.content_encoding, 'latin_1')
-        self.assertTrue(isinstance(msg2.body, unicode))
         self.assertEqual(msg2.body, u'hello w\u00f6rld')
 
         #
