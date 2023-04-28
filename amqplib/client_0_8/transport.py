@@ -54,7 +54,6 @@ class _AbstractTransport(object):
 
     """
     def __init__(self, host, connect_timeout):
-        msg = 'socket.getaddrinfo() for %s returned an empty list' % host
         port = AMQP_PORT
 
         m = IPV6_LITERAL.match(host)
@@ -74,7 +73,7 @@ class _AbstractTransport(object):
                 self.sock = socket.socket(af, socktype, proto)
                 self.sock.settimeout(connect_timeout)
                 self.sock.connect(sa)
-            except socket.error, msg:
+            except socket.error:
                 self.sock.close()
                 self.sock = None
                 continue
@@ -82,7 +81,7 @@ class _AbstractTransport(object):
 
         if not self.sock:
             # Didn't connect, return the most recent error message
-            raise socket.error, msg
+            raise socket.error
 
         self.sock.settimeout(None)
         self.sock.setsockopt(socket.SOL_TCP, socket.TCP_NODELAY, 1)
