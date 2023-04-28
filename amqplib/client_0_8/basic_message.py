@@ -19,7 +19,7 @@ Messages for AMQP
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 
 
-from serialization import GenericContent
+from .serialization import GenericContent
 
 __all__ =  [
             'Message',

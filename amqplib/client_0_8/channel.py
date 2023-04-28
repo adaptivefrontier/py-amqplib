@@ -19,11 +19,11 @@ AMQP 0-8 Channels
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 
 import logging
-from Queue import Queue
+from queue import Queue
 
-from abstract_channel import AbstractChannel
-from exceptions import *
-from serialization import AMQPWriter
+from .abstract_channel import AbstractChannel
+from .exceptions import *
+from .serialization import AMQPWriter
 
 __all__ =  [
             'Channel',      # here mainly so it shows in in pydoc
@@ -2136,7 +2136,7 @@ class Channel(AbstractChannel):
                 client applications.
 
         """
-        cluster_id = args.read_shortstr()
+        args.read_shortstr()
 
 
     def _basic_get_ok(self, args, msg):

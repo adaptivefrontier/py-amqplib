@@ -20,12 +20,12 @@ AMQP 0-8 Connections
 
 import logging
 
-from abstract_channel import AbstractChannel
-from channel import Channel
-from exceptions import *
-from method_framing import MethodReader, MethodWriter
-from serialization import AMQPReader, AMQPWriter
-from transport import create_transport
+from .abstract_channel import AbstractChannel
+from .channel import Channel
+from .exceptions import *
+from .method_framing import MethodReader, MethodWriter
+from .serialization import AMQPWriter
+from .transport import create_transport
 
 __all__ =  [
             'Connection',
@@ -560,7 +560,7 @@ class Connection(AbstractChannel):
                 passed to the security mechanism.
 
         """
-        challenge = args.read_longstr()
+        args.read_longstr()
 
 
     def _x_secure_ok(self, response):
