@@ -349,7 +349,6 @@ class AMQPWriter(object):
 
         """
         self._flushbits()
-        s = s.encode('utf-8')
         self.write_long(len(s))
         self.out.write(s)
 
