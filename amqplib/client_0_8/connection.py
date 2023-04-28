@@ -171,8 +171,7 @@ class Connection(AbstractChannel):
         for i in xrange(1, self.channel_max+1):
             if i not in self.channels:
                 return i
-        raise AMQPException('No free channel ids, current=%d, channel_max=%d'
-            % (len(self.channels), self.channel_max))
+        raise AMQPException('No free channel ids')
 
 
     def _wait_method(self, channel_id, allowed_methods):

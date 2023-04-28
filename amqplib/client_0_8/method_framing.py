@@ -241,7 +241,7 @@ class MethodWriter(object):
             # problem with the content properties, before sending the
             # first frame
             body = content.body
-            if isinstance(body, unicode):
+            if isinstance(body, str):
                 coding = content.properties.get('content_encoding', None)
                 if coding is None:
                     coding = content.properties['content_encoding'] = 'UTF-8'
