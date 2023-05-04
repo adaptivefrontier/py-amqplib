@@ -257,5 +257,5 @@ class MethodWriter(object):
             self.dest.write_frame(2, channel, payload)
 
             chunk_size = self.frame_max - 8
-            for i in xrange(0, len(body), chunk_size):
+            for i in range(0, len(body), chunk_size):
                 self.dest.write_frame(3, channel, body[i:i+chunk_size])
